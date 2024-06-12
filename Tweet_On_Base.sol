@@ -8,7 +8,7 @@ import "contracts/security/Pausable.sol";
 import "contracts/security/Pausable.sol";
 import "contracts/security/ReentrancyGuard.sol";
 
-contract Test_Tweet_On_Base is ERC20, ERC20Burnable, Pausable, Ownable, ReentrancyGuard { 
+contract Tweet_On_Base is ERC20, ERC20Burnable, Pausable, Ownable, ReentrancyGuard { 
     uint256 public constant INITIAL_SUPPLY = 100_000_000 * (10 ** 18);
     uint256 public constant MAX_SUPPLY = 5_000_000_000 * (10 ** 18); 
 
