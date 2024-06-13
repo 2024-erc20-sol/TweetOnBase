@@ -13,7 +13,7 @@ contract Tweet_On_Base is ERC20, ERC20Burnable, Pausable, Ownable, ReentrancyGua
     uint256 public constant MAX_SUPPLY = 5_000_000_000 * (10 ** 18); 
 
     mapping(address => uint256) private _liquidityProvided;
-    mapping(address => uint256) private _liquidityProvidedTimestamp;
+    mapping(address => uint256) private _liquidityProvidedTimestamp;//
 
     bool private _circuitBreakerEnabled = false;
 
