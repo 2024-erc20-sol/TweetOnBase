@@ -13,12 +13,9 @@ contract Tweet_On_Base is ERC20, ERC20Burnable, Pausable, Ownable, ReentrancyGua
     function decimals() public view virtual override returns (uint8) {
         return 0;
     }
-
     mapping(address => uint256) private _liquidityProvided;
-    mapping(address => uint256) private _liquidityProvidedTimestamp;//
-
-    
-
+    mapping(address => uint256) private _liquidityProvidedTimestamp;
+ 
     constructor() ERC20("Tweet On Base", "Tweets") Ownable(msg.sender) {
         _mint(msg.sender, INITIAL_SUPPLY);
     }

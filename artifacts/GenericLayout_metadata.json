@@ -6,7 +6,38 @@
 	"output": {
 		"abi": [
 			{
-				"inputs": [],
+				"inputs": [
+					{
+						"internalType": "string",
+						"name": "name",
+						"type": "string"
+					},
+					{
+						"internalType": "string",
+						"name": "symbol",
+						"type": "string"
+					},
+					{
+						"internalType": "uint256",
+						"name": "initialSupply",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "_maxSupply",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint8",
+						"name": "_decimalsPlaces",
+						"type": "uint8"
+					},
+					{
+						"internalType": "address",
+						"name": "deployerAddress",
+						"type": "address"
+					}
+				],
 				"stateMutability": "nonpayable",
 				"type": "constructor"
 			},
@@ -214,32 +245,6 @@
 				"type": "event"
 			},
 			{
-				"inputs": [],
-				"name": "INITIAL_SUPPLY",
-				"outputs": [
-					{
-						"internalType": "uint256",
-						"name": "",
-						"type": "uint256"
-					}
-				],
-				"stateMutability": "view",
-				"type": "function"
-			},
-			{
-				"inputs": [],
-				"name": "MAX_SUPPLY",
-				"outputs": [
-					{
-						"internalType": "uint256",
-						"name": "",
-						"type": "uint256"
-					}
-				],
-				"stateMutability": "view",
-				"type": "function"
-			},
-			{
 				"inputs": [
 					{
 						"internalType": "uint256",
@@ -384,6 +389,19 @@
 			},
 			{
 				"inputs": [],
+				"name": "decimalsPlaces",
+				"outputs": [
+					{
+						"internalType": "uint8",
+						"name": "",
+						"type": "uint8"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
 				"name": "disableCircuitBreaker",
 				"outputs": [],
 				"stateMutability": "nonpayable",
@@ -394,6 +412,19 @@
 				"name": "enableCircuitBreaker",
 				"outputs": [],
 				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "maxSupply",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
 				"type": "function"
 			},
 			{
@@ -725,7 +756,7 @@
 	},
 	"settings": {
 		"compilationTarget": {
-			"tESTtWEET.SOL": "Tweet_On_Base"
+			"GenericLayout.sol": "GenericLayout"
 		},
 		"evmVersion": "cancun",
 		"libraries": {},
@@ -739,6 +770,14 @@
 		"remappings": []
 	},
 	"sources": {
+		"GenericLayout.sol": {
+			"keccak256": "0x41bedad3f99e375eed9825f9a0ab95f738e94bbca5a1b015b441b17cc66f6764",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://81aae10fabd8e03878eb1aad6b0d77b56e4ede98ea13d06ff42b7f20cfc8edbb",
+				"dweb:/ipfs/QmawtRYyF9GF2ceF7vrn1hx6hz15xkpdcHZeQCzdtEWGbB"
+			]
+		},
 		"contracts/access/Ownable.sol": {
 			"keccak256": "0xff6d0bb2e285473e5311d9d3caacb525ae3538a80758c10649a4d61029b017bb",
 			"license": "MIT",
@@ -809,14 +848,6 @@
 			"urls": [
 				"bzz-raw://6a708e8a5bdb1011c2c381c9a5cfd8a9a956d7d0a9dc1bd8bcdaf52f76ef2f12",
 				"dweb:/ipfs/Qmax9WHBnVsZP46ZxEMNRQpLQnrdE4dK8LehML1Py8FowF"
-			]
-		},
-		"tESTtWEET.SOL": {
-			"keccak256": "0x3d8d2c6f8cad63e4152958373bd90c6c3eb8a9cd785ffac0e8fe6a6106f32d67",
-			"license": "MIT",
-			"urls": [
-				"bzz-raw://c95b4de0cee6c882d52ee730195293e63e8827065aeda3c1cc6bb4a16f327b4c",
-				"dweb:/ipfs/QmfQmKTcKowzFAQeRcNNJQrbhMHSuAtvnVX6ZtoLPFphkf"
 			]
 		}
 	},
