@@ -1,12 +1,12 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.20;
+
 import "contracts/token/ERC20/ERC20.sol";
 import "contracts/token/ERC20/extensions/ERC20Burnable.sol";
 import "contracts/access/Ownable.sol";
-import "contracts/security/Pausable.sol";
 import "contracts/security/ReentrancyGuard.sol";
 
-contract Tweet_On_Base is ERC20, ERC20Burnable, Pausable, Ownable, ReentrancyGuard { 
+contract Tweet_On_Base is ERC20, ERC20Burnable, Ownable, ReentrancyGuard { 
     uint256 public constant INITIAL_SUPPLY = 100_000_000 * (10 ** 0);
     uint256 public constant MAX_SUPPLY = 5_000_000_000 * (10 ** 0); 
 
@@ -18,13 +18,6 @@ contract Tweet_On_Base is ERC20, ERC20Burnable, Pausable, Ownable, ReentrancyGua
  
     constructor() ERC20("Tweet On Base", "Tweets") Ownable(msg.sender) {
         _mint(msg.sender, INITIAL_SUPPLY);
-    }
-
-    function pause() public onlyOwner {
-        _pause();
-    }
-    function unpause() public onlyOwner {
-        _unpause();
     }
     
     bool private _circuitBreakerEnabled = false;    
@@ -50,7 +43,6 @@ contract Tweet_On_Base is ERC20, ERC20Burnable, Pausable, Ownable, ReentrancyGua
  
     function _beforeTokenTransfer(address from, address to, uint256 amount)
         internal
-        whenNotPaused
         circuitBreakerNotActive
         override
     {
@@ -62,7 +54,6 @@ contract Tweet_On_Base is ERC20, ERC20Burnable, Pausable, Ownable, ReentrancyGua
         _liquidityProvided[msg.sender] += amount;
         _liquidityProvidedTimestamp[msg.sender] = block.timestamp;
     }
-
     function removeLiquidityAndClaimRewards(uint256 amount) public nonReentrant {
         require(amount <= _liquidityProvided[msg.sender], "Insufficient balance");
         require(block.timestamp >= _liquidityProvidedTimestamp[msg.sender] + 30 days, "Liquidity must be provided for at least 30 days to qualify for rewards");
@@ -70,9 +61,9 @@ contract Tweet_On_Base is ERC20, ERC20Burnable, Pausable, Ownable, ReentrancyGua
         uint256 reward = calculateReward(msg.sender);
         require(totalSupply() + reward <= MAX_SUPPLY, "Reward exceeds max supply");
 
-    _mint(msg.sender, reward); 
-    _transfer(address(this), msg.sender, amount); 
-    _liquidityProvided[msg.sender] -= amount;
+        _mint(msg.sender, reward); 
+        _transfer(address(this), msg.sender, amount); 
+        _liquidityProvided[msg.sender] -= amount;
         if (_liquidityProvided[msg.sender] == 0) {
             _liquidityProvidedTimestamp[msg.sender] = 0; 
         } else {
@@ -81,9 +72,9 @@ contract Tweet_On_Base is ERC20, ERC20Burnable, Pausable, Ownable, ReentrancyGua
     }
 
     function calculateReward(address user) public view returns (uint256) {
-    if (block.timestamp >= _liquidityProvidedTimestamp[user] + 30 days) {
-        uint256 reward = (_liquidityProvided[user] * 5) / 100;        
-        if (totalSupply() + reward <= MAX_SUPPLY) {
+        if (block.timestamp >= _liquidityProvidedTimestamp[user] + 30 days) {
+            uint256 reward = (_liquidityProvided[user] * 5) / 100;        
+            if (totalSupply() + reward <= MAX_SUPPLY) {
             return reward;
         }
     }

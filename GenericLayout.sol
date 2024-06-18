@@ -3,12 +3,12 @@ pragma solidity ^0.8.20;
 import "contracts/token/ERC20/ERC20.sol";
 import "contracts/token/ERC20/extensions/ERC20Burnable.sol";
 import "contracts/access/Ownable.sol";
-import "contracts/security/Pausable.sol";
+//import "contracts/security/Pausable.sol";
 import "contracts/security/ReentrancyGuard.sol";
 
-contract GenericLayout is ERC20, ERC20Burnable, Pausable, Ownable, ReentrancyGuard {
+contract GenericLayout is ERC20, ERC20Burnable, /*Pausable*/ Ownable, ReentrancyGuard {
     uint256 public maxSupply; 
-    //uint256 public decimalsPlaces;
+    
     uint8 public decimalsPlaces;
 
     mapping(address => uint256) private _liquidityProvided;
@@ -31,14 +31,14 @@ contract GenericLayout is ERC20, ERC20Burnable, Pausable, Ownable, ReentrancyGua
     function decimals() public view virtual override returns (uint8) {
         return decimalsPlaces;
     }
-
+/*
     function pause() public onlyOwner {
         _pause();
     }
     function unpause() public onlyOwner {
         _unpause();
     }
-    
+  */  
     bool private _circuitBreakerEnabled = false;    
     modifier circuitBreakerNotActive() {
         require(!_circuitBreakerEnabled, "Circuit breaker is active");
@@ -62,7 +62,7 @@ contract GenericLayout is ERC20, ERC20Burnable, Pausable, Ownable, ReentrancyGua
  
     function _beforeTokenTransfer(address from, address to, uint256 amount)
         internal
-        whenNotPaused
+        //whenNotPaused
         circuitBreakerNotActive
         override
     {
