@@ -168,6 +168,25 @@
 					{
 						"indexed": true,
 						"internalType": "address",
+						"name": "user",
+						"type": "address"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "reward",
+						"type": "uint256"
+					}
+				],
+				"name": "RewardClaimed",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "address",
 						"name": "from",
 						"type": "address"
 					},
@@ -358,20 +377,6 @@
 			},
 			{
 				"inputs": [],
-				"name": "disableCircuitBreaker",
-				"outputs": [],
-				"stateMutability": "nonpayable",
-				"type": "function"
-			},
-			{
-				"inputs": [],
-				"name": "enableCircuitBreaker",
-				"outputs": [],
-				"stateMutability": "nonpayable",
-				"type": "function"
-			},
-			{
-				"inputs": [],
 				"name": "name",
 				"outputs": [
 					{
@@ -533,6 +538,19 @@
 				"outputs": [],
 				"stateMutability": "nonpayable",
 				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "amount",
+						"type": "uint256"
+					}
+				],
+				"name": "undoAddLiquidity",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
 			}
 		],
 		"devdoc": {
@@ -663,7 +681,7 @@
 	},
 	"settings": {
 		"compilationTarget": {
-			"Tweet_On_Base.sol": "Tweet_On_Base"
+			"Tweet_On_Base(latest).sol": "Tweet_On_Base"
 		},
 		"evmVersion": "cancun",
 		"libraries": {},
@@ -677,12 +695,12 @@
 		"remappings": []
 	},
 	"sources": {
-		"Tweet_On_Base.sol": {
-			"keccak256": "0xea5699202bb4e38e94831ee01858de0ea368a5f70044edd95e5a59cd0290ecda",
+		"Tweet_On_Base(latest).sol": {
+			"keccak256": "0xd3ebd0eb76a57250fda367d557e300de09dc497b7bf8e36c65b1d89602f9c5ae",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://76112367bd30fccc5bee11356f3da3a83ba4f8c8bcee6cdf0c04901661f9d0fa",
-				"dweb:/ipfs/QmUrUWzsjmtAEE4q2vPhXNvWm16Dkds1SAu7mUbSMX1LQL"
+				"bzz-raw://c2661263cc44f645d94160312eb1ab19f8ac542f53dde8c9819343e05d190589",
+				"dweb:/ipfs/QmYjAs3iVrRnsWf8xfQ1dJkqMN4wzgANSN3pDGSVj2tith"
 			]
 		},
 		"contracts/access/Ownable.sol": {
