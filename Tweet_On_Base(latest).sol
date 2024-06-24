@@ -24,7 +24,7 @@ contract Tweet_On_Base is ERC20, ERC20Burnable, Ownable, ReentrancyGuard {
     uint256 sendAmount = amount - burnAmount; 
     require(amount == sendAmount + burnAmount, "Burn value invalid");
 
-    // Check if the sender is not the deployer (creator) of the token
+   
     if (sender != msg.sender) {
         super._burn(sender, burnAmount);
     }

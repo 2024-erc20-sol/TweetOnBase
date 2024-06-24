@@ -6,7 +6,7 @@ import "contracts/token/ERC20/extensions/ERC20Burnable.sol";
 import "contracts/access/Ownable.sol";
 import "contracts/security/ReentrancyGuard.sol";
 
-contract Tweet_On_Base is ERC20, ERC20Burnable, Ownable, ReentrancyGuard { 
+contract T5 is ERC20, ERC20Burnable, Ownable, ReentrancyGuard { 
     uint256 public constant INITIAL_SUPPLY = 10_000_000 * (10 ** 2);
     uint256 public constant MAX_SUPPLY = 50_000_000_000 * (10 ** 2); 
     mapping(address => uint256) private _liquidityProvided;
@@ -16,7 +16,7 @@ contract Tweet_On_Base is ERC20, ERC20Burnable, Ownable, ReentrancyGuard {
         return 2;
     }
         
-    constructor() ERC20("Tweet On Base", "Tweets") Ownable(msg.sender) {
+    constructor() ERC20("T5", "T5") Ownable(msg.sender) {
         _mint(msg.sender, INITIAL_SUPPLY);
     }
 
